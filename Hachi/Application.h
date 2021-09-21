@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __APPLICATION_H__
+#define __APPLICATION_H__
 
 #include "Globals.h"
 #include "Timer.h"
@@ -11,11 +12,13 @@
 #include "ModuleCamera3D.h"
 #include <list>
 
+
 using namespace std;
 
 class Application
 {
 public:
+
 	ModuleWindow* window;
 	ModuleInput* input;
 	ModuleAudio* audio;
@@ -44,3 +47,5 @@ private:
 	void PrepareUpdate();
 	void FinishUpdate();
 };
+
+#endif

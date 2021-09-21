@@ -4,19 +4,18 @@
 
 #define MAX_KEYS 300
 
+
 ModuleInput::ModuleInput(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	keyboard = new KEY_STATE[MAX_KEYS];
 	memset(keyboard, KEY_IDLE, sizeof(KEY_STATE) * MAX_KEYS);
 }
 
-// Destructor
 ModuleInput::~ModuleInput()
 {
 	delete[] keyboard;
 }
 
-// Called before render is available
 bool ModuleInput::Init()
 {
 	LOG("Init SDL input event system");
@@ -32,7 +31,6 @@ bool ModuleInput::Init()
 	return ret;
 }
 
-// Called every draw update
 update_status ModuleInput::PreUpdate(float dt)
 {
 	SDL_PumpEvents();
@@ -85,6 +83,7 @@ update_status ModuleInput::PreUpdate(float dt)
 
 	bool quit = false;
 	SDL_Event e;
+
 	while(SDL_PollEvent(&e))
 	{
 		switch(e.type)
@@ -119,10 +118,10 @@ update_status ModuleInput::PreUpdate(float dt)
 	return UPDATE_CONTINUE;
 }
 
-// Called before quitting
 bool ModuleInput::CleanUp()
 {
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
+
 	return true;
 }

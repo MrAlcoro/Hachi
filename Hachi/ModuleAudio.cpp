@@ -4,14 +4,11 @@
 
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
-ModuleAudio::ModuleAudio(Application* app, bool start_enabled) : Module(app, start_enabled), music(NULL)
-{}
 
-// Destructor
-ModuleAudio::~ModuleAudio()
-{}
+ModuleAudio::ModuleAudio(Application* app, bool start_enabled) : Module(app, start_enabled), music(NULL){}
 
-// Called before render is available
+ModuleAudio::~ModuleAudio(){}
+
 bool ModuleAudio::Init()
 {
 	LOG("Loading Audio Mixer");
@@ -24,7 +21,6 @@ bool ModuleAudio::Init()
 		ret = false;
 	}
 
-	// load support for the OGG format
 	int flags = MIX_INIT_OGG;
 	int init = Mix_Init(flags);
 
@@ -34,7 +30,6 @@ bool ModuleAudio::Init()
 		ret = false;
 	}
 
-	//Initialize SDL_mixer
 	if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 	{
 		LOG("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
@@ -44,7 +39,6 @@ bool ModuleAudio::Init()
 	return ret;
 }
 
-// Called before quitting
 bool ModuleAudio::CleanUp()
 {
 	LOG("Freeing sound FX, closing Mixer and Audio subsystem");
@@ -64,10 +58,10 @@ bool ModuleAudio::CleanUp()
 	Mix_CloseAudio();
 	Mix_Quit();
 	SDL_QuitSubSystem(SDL_INIT_AUDIO);
+
 	return true;
 }
 
-// Play a music file
 bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 {
 	bool ret = true;
@@ -83,7 +77,6 @@ bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 			Mix_HaltMusic();
 		}
 
-		// this call blocks until fade out is done
 		Mix_FreeMusic(music);
 	}
 
@@ -115,10 +108,10 @@ bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 	}
 
 	LOG("Successfully playing %s", path);
+
 	return ret;
 }
 
-// Load WAV
 unsigned int ModuleAudio::LoadFx(const char* path)
 {
 	unsigned int ret = 0;
@@ -138,7 +131,6 @@ unsigned int ModuleAudio::LoadFx(const char* path)
 	return ret;
 }
 
-// Play WAV
 bool ModuleAudio::PlayFx(unsigned int id, int repeat)
 {
 	bool ret = false;
@@ -149,7 +141,6 @@ bool ModuleAudio::PlayFx(unsigned int id, int repeat)
 	{
 		if (fx[id - 1] != nullptr)
 		{
-			//FxVolume(-1, volumefx, sp_audio);
 			Mix_PlayChannel(-1, chunk, repeat);
 		}
 		else {

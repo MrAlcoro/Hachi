@@ -1,20 +1,22 @@
-#pragma once
+#ifndef __MODULE_H__
+#define __MODULE_H__
+
 
 class Application;
 
 class Module
 {
-private :
+private:
+
 	bool enabled;
 
 public:
+
 	Application* App;
 
-	Module(Application* parent, bool start_enabled = true) : App(parent)
-	{}
+	Module(Application* parent, bool start_enabled = true) : App(parent){}
 
-	virtual ~Module()
-	{}
+	virtual ~Module(){}
 
 	virtual bool Init() 
 	{
@@ -46,3 +48,5 @@ public:
 		return true; 
 	}
 };
+
+#endif

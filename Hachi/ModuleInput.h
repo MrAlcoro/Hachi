@@ -1,8 +1,11 @@
-#pragma once
+#ifndef __MODULEINPUT_H__
+#define __MODULEINPUT_H__
+
 #include "Module.h"
 #include "Globals.h"
 
 #define MAX_MOUSE_BUTTONS 5
+
 
 enum KEY_STATE
 {
@@ -59,6 +62,7 @@ public:
 	}
 
 private:
+
 	KEY_STATE* keyboard;
 	KEY_STATE mouse_buttons[MAX_MOUSE_BUTTONS];
 	int mouse_x;
@@ -66,5 +70,6 @@ private:
 	int mouse_z;
 	int mouse_x_motion;
 	int mouse_y_motion;
-	//int mouse_z_motion;
 };
+
+#endif

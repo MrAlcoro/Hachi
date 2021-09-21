@@ -1,7 +1,9 @@
+#ifndef __PRIMITIVE_H__
+#define __PRIMITIVE_H__
 
-#pragma once
 #include "glmath.h"
 #include "Color.h"
+
 
 enum PrimitiveTypes
 {
@@ -33,63 +35,76 @@ public:
 	bool axis,wire;
 
 protected:
+
 	PrimitiveTypes type;
 };
 
-// ============================================
 class Cube : public Primitive
 {
-public :
+public:
+
 	Cube();
 	Cube(float sizeX, float sizeY, float sizeZ);
 	void InnerRender() const;
+
 public:
+
 	vec3 size;
 };
 
-// ============================================
 class Sphere : public Primitive
 {
 public:
+
 	Sphere();
 	Sphere(float radius);
 	void InnerRender() const;
+
 public:
+
 	float radius;
 };
 
-// ============================================
 class Cylinder : public Primitive
 {
 public:
+
 	Cylinder();
 	Cylinder(float radius, float height);
 	void InnerRender() const;
+
 public:
+
 	float radius;
 	float height;
 };
 
-// ============================================
 class Line : public Primitive
 {
 public:
+
 	Line();
 	Line(float x, float y, float z);
 	void InnerRender() const;
+
 public:
+
 	vec3 origin;
 	vec3 destination;
 };
 
-// ============================================
 class Plane : public Primitive
 {
 public:
+
 	Plane();
 	Plane(float x, float y, float z, float d);
 	void InnerRender() const;
+
 public:
+
 	vec3 normal;
 	float constant;
 };
+
+#endif

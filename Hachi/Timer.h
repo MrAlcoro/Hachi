@@ -4,11 +4,11 @@
 #include "Globals.h"
 #include "SDL\include\SDL.h"
 
+
 class Timer
 {
 public:
 
-	// Constructor
 	Timer();
 
 	void Start();
@@ -23,4 +23,4 @@ private:
 	Uint32	stopped_at;
 };
 
-#endif //__TIMER_H__
+#endif

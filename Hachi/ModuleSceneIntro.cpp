@@ -3,14 +3,11 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 
-ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
-{
-}
 
-ModuleSceneIntro::~ModuleSceneIntro()
-{}
+ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled){}
 
-// Load assets
+ModuleSceneIntro::~ModuleSceneIntro(){}
+
 bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
@@ -18,10 +15,10 @@ bool ModuleSceneIntro::Start()
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
+
 	return ret;
 }
 
-// Load assets
 bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
@@ -29,7 +26,6 @@ bool ModuleSceneIntro::CleanUp()
 	return true;
 }
 
-// Update: draw background
 update_status ModuleSceneIntro::Update(float dt)
 {
 	Plane p(0, 1, 0, 0);

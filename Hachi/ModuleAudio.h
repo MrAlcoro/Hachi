@@ -1,13 +1,14 @@
-#ifndef __ModuleAudio_H__
-#define __ModuleAudio_H__
+#ifndef __MODULEAUDIO_H__
+#define __MODULEAUDIO_H__
 
 #include "Module.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #include <vector>
 
-using namespace std;
-
 #define DEFAULT_MUSIC_FADE_TIME 2.0f
+
+
+using namespace std;
 
 class ModuleAudio : public Module
 {
@@ -19,13 +20,10 @@ public:
 	bool Init();
 	bool CleanUp();
 
-	// Play a music file
 	bool PlayMusic(const char* path, float fade_time = DEFAULT_MUSIC_FADE_TIME);
 
-	// Load a WAV in memory
 	unsigned int LoadFx(const char* path);
 
-	// Play a previously loaded WAV
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
 private:
@@ -34,4 +32,4 @@ private:
 	vector<Mix_Chunk*>	fx;
 };
 
-#endif // __ModuleAudio_H__
+#endif
