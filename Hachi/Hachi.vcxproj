@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{746CC4C3-787F-4B0E-AA66-E388FE3FF4F6}</ProjectGuid>
+    <ProjectGuid>{D71A4624-EFCF-4F28-8B8D-D1A7294143C9}</ProjectGuid>
     <RootNamespace>SDLGame</RootNamespace>
-    <ProjectName>3D Physics - class2 Handout</ProjectName>
+    <ProjectName>Hachi</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
