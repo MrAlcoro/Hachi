@@ -18,8 +18,8 @@
 //  On computer platform the GLSL version default to "#version 130". On OpenGL ES 3 platform it defaults to "#version 300 es"
 //  Only override if your GL version doesn't handle this GLSL version. See GLSL version table at the top of imgui_impl_opengl3.cpp.
 
-#pragma once
-#include "imgui.h"      // IMGUI_IMPL_API
+#pragma once 
+#include "../imgui.h"  // IMGUI_IMPL_API
 
 // Backend API
 IMGUI_IMPL_API bool     ImGui_ImplOpenGL3_Init(const char* glsl_version = NULL);
