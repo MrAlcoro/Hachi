@@ -58,7 +58,6 @@ public:
 
 	Sphere();
 	Sphere(float radius);
-	void InnerRender() const;
 
 public:
 
