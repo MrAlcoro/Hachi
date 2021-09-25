@@ -15,10 +15,6 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
-
-private:
-
-	bool showDemoWindow = false;
 };
 
 #endif
