@@ -2,8 +2,6 @@
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
-#include "ImGui/imgui.h"
-#include "ImGui/backends/imgui_impl_opengl3.h"
 
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled){}
@@ -36,4 +34,3 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	return UPDATE_CONTINUE;
 }
-
