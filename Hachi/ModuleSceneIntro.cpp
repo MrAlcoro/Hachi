@@ -24,6 +24,7 @@ bool ModuleSceneIntro::Start()
 	IMGUI_CHECKVERSION();
 	CreateContext();
 	ImGuiIO& io = GetIO(); (void)io;
+	ImFont* defaultFont = io.Fonts->AddFontFromFileTTF("../Fonts/arial_unicode.ttf", 17.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
 	StyleColorsDark();
 
 	ImGui_ImplSDL2_InitForOpenGL(App->window->window, NULL);
@@ -127,11 +128,11 @@ update_status ModuleSceneIntro::Update(float dt)
 				OpenPopup("About");
 
 			ImVec2 center = GetMainViewport()->GetCenter();
-			SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.3f));
+			SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.4f));
 
 			if (ImGui::BeginPopupModal("About", NULL, ImGuiWindowFlags_AlwaysAutoResize))
 			{
-				Text("Hachi\n3D game engine made by Alexis Cosano Rodriguez.\n\n");
+				Text(u8"ハチ (Hachi)\n3D game engine made by Alexis Cosano Rodriguez.\n\n");
 				Separator();
 				Spacing();
 				Text("External resources used:\n");
@@ -146,13 +147,13 @@ update_status ModuleSceneIntro::Update(float dt)
 					"Copyright(c) 2021 Alexis Cosano\n\n"
 
 					"Permission is hereby granted, free of charge, to any person obtaining a copy"
-					"of this softwareand associated documentation files (the 'Software'), to deal"
+					"of this software and associated documentation files (the 'Software'), to deal"
 					"in the Software without restriction, including without limitation the rights"
 					"to use, copy, modify, merge, publish, distribute, sublicense, and /or sell"
 					"copies of the Software, and to permit persons to whom the Software is"
 					"furnished to do so, subject to the following conditions:\n\n"
 
-					"The above copyright noticeand this permission notice shall be included in all"
+					"The above copyright notice and this permission notice shall be included in all"
 					"copies or substantial portions of the Software.\n\n"
 
 					"THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR"
