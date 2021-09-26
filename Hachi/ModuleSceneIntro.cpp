@@ -56,9 +56,56 @@ update_status ModuleSceneIntro::Update(float dt)
 	NewFrame();
 
 	static bool showDemoWindow = false;
+	static bool showConfigWindow = false;
 
 	if (showDemoWindow)
 		ShowDemoWindow(&showDemoWindow);
+
+	if (showConfigWindow)
+	{
+		ImGui::Begin("Engine configuration");
+		ImGui::SetNextWindowSize(ImVec2(520, 600), ImGuiCond_FirstUseEver);
+
+		if (ImGui::CollapsingHeader("Application"))
+		{
+			ImGui::TextWrapped("Engine name: Hachi");
+		}
+
+		if (ImGui::CollapsingHeader("Window"))
+		{
+			// Lorem ipsum
+		}
+
+		if (ImGui::CollapsingHeader("Input"))
+		{
+			ImGui::TextWrapped("Mouse position:");
+			ImGui::SameLine();
+			ImGui::TextColored({ 255, 255, 0, 255 }, "X: %i ", App->input->GetMouseX());
+			ImGui::SameLine();
+			ImGui::TextColored({ 255, 255, 0, 255 }, "Y: %i", App->input->GetMouseY());
+		}
+
+		if (ImGui::CollapsingHeader("User's information"))
+		{
+			ImGui::BulletText("CPU cache line size: %d", SDL_GetCPUCacheLineSize());
+			ImGui::BulletText("CPU cores available: %d", SDL_GetCPUCount());
+			ImGui::BulletText("RAM configured: %d", SDL_GetSystemRAM());
+			ImGui::BulletText("RAM configured: %d", SDL_GetSystemRAM());
+			ImGui::BulletText("Has 3DNow!: %d", SDL_Has3DNow());
+			ImGui::BulletText("Has AltiVec: %d", SDL_HasAltiVec());
+			ImGui::BulletText("Has AVX: %d", SDL_HasAVX());
+			ImGui::BulletText("Has AVX2: %d", SDL_HasAVX2());
+			ImGui::BulletText("Has MMX: %d", SDL_HasMMX());
+			ImGui::BulletText("Has RDTSC: %d", SDL_HasRDTSC());
+			ImGui::BulletText("Has SSE: %d", SDL_HasSSE());
+			ImGui::BulletText("Has SSE2: %d", SDL_HasSSE2());
+			ImGui::BulletText("Has SSE3: %d", SDL_HasSSE3());
+			ImGui::BulletText("Has SSE41: %d", SDL_HasSSE41());
+			ImGui::BulletText("Has SSE42: %d", SDL_HasSSE42());
+		}
+
+		ImGui::End();
+	}
 
 	if (BeginMainMenuBar())
 	{
@@ -74,11 +121,13 @@ update_status ModuleSceneIntro::Update(float dt)
 		{
 			ImGui::MenuItem("Demo window", NULL, &showDemoWindow);
 
+			ImGui::MenuItem("Config window", NULL, &showConfigWindow);
+
 			if (Button("About"))
 				OpenPopup("About");
 
 			ImVec2 center = GetMainViewport()->GetCenter();
-			SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+			SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.3f));
 
 			if (ImGui::BeginPopupModal("About", NULL, ImGuiWindowFlags_AlwaysAutoResize))
 			{
@@ -86,10 +135,10 @@ update_status ModuleSceneIntro::Update(float dt)
 				Separator();
 				Spacing();
 				Text("External resources used:\n");
-				Text("- ImGui v%s", ImGui::GetVersion());
-				Text("- SDL v%d.%d.%d", SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
-				Text("- OpenGL v3");
-				Text("- MathGeoLib v1.5\n\n");
+				BulletText("ImGui v%s", ImGui::GetVersion());
+				BulletText("SDL v%d.%d.%d", SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
+				BulletText("OpenGL v3");
+				BulletText("MathGeoLib v1.5\n\n");
 				Separator();
 				Spacing();
 				TextWrapped("MIT License"
