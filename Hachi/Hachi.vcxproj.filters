@@ -303,6 +303,7 @@
     <ClInclude Include="Parson\parson.h">
       <Filter>Sources\Tools\Parson</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -499,5 +500,11 @@
     <None Include="MathGeoLib\Math\Matrix.inl">
       <Filter>Sources\MathGeoLib\Math</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hachi.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sprites\hachi_icon.ico" />
   </ItemGroup>
 </Project>
