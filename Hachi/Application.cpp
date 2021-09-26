@@ -114,3 +114,8 @@ void Application::AddModule(Module* mod)
 {
 	list_modules.push_back(mod);
 }
+
+void RequestBrowser(const char* websiteUrl)
+{
+	ShellExecuteA(NULL, "open", websiteUrl, NULL, NULL, SW_SHOWNORMAL);
+}

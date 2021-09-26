@@ -1,4 +1,4 @@
-#include "Globals.h"
+﻿#include "Globals.h"
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
@@ -74,10 +74,61 @@ update_status ModuleSceneIntro::Update(float dt)
 		{
 			ImGui::MenuItem("Demo window", NULL, &showDemoWindow);
 
+			if (Button("About"))
+				OpenPopup("About");
+
+			ImVec2 center = GetMainViewport()->GetCenter();
+			SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+			if (ImGui::BeginPopupModal("About", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+			{
+				Text("Hachi\n3D game engine made by Alexis Cosano Rodriguez.\n\n");
+				Separator();
+				Spacing();
+				Text("External resources used:\n");
+				Text("- ImGui v%s", ImGui::GetVersion());
+				Text("- SDL v%d.%d.%d", SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
+				Text("- OpenGL v3");
+				Text("- MathGeoLib v1.5\n\n");
+				Separator();
+				Spacing();
+				TextWrapped("MIT License"
+
+					"Copyright(c) 2021 Alexis Cosano\n\n"
+
+					"Permission is hereby granted, free of charge, to any person obtaining a copy"
+					"of this softwareand associated documentation files (the 'Software'), to deal"
+					"in the Software without restriction, including without limitation the rights"
+					"to use, copy, modify, merge, publish, distribute, sublicense, and /or sell"
+					"copies of the Software, and to permit persons to whom the Software is"
+					"furnished to do so, subject to the following conditions:\n\n"
+
+					"The above copyright noticeand this permission notice shall be included in all"
+					"copies or substantial portions of the Software.\n\n"
+
+					"THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR"
+					"IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,"
+					"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE"
+					"AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+					"LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,"
+					"OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE"
+					"SOFTWARE.\n\n\n");
+
+				if (Button("Close", ImVec2(120, 0))) { CloseCurrentPopup(); }
+
+				EndPopup();
+			}
+
 			ImGui::EndMenu();
 		}
 
 		EndMainMenuBar();
+	}
+
+	if (Begin("Console"))
+	{
+
+		End();
 	}
 
 	Render();
